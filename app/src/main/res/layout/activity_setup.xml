@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_bold"
+            android:text="الخطوة ٢ من ٢"
+            android:textColor="@color/brown_mid"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_extrabold"
+            android:text="التطبيقات التي تُقفل"
+            android:textColor="@color/brown"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/appsHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="تُقفل هذه التطبيقات كل يوم إلى أن تكمل قراءتك."
+            android:textColor="@color/brown_mid"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="فيسبوك"
+                android:textColor="@color/brown"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchInstagram"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="إنستجرام"
+                android:textColor="@color/brown"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchTwitter"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/cairo_bold"
+                android:text="تويتر (X)"
+                android:textColor="@color/brown"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Daily count row (settings mode only) -->
+        <LinearLayout
+            android:id="@+id/countRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:minHeight="64dp"
+            android:orientation="horizontal"
+            android:padding="14dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="عدد الأصحاحات اليومي"
+                    android:textColor="@color/brown"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/countValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/brown_mid"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/countChange"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_btn_yellow"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="تغيير"
+                android:textColor="@color/brown"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/cairo_bold"
+            android:text="أذونات لازمة للقفل"
+            android:textColor="@color/brown"
+            android:textSize="16sp" />
+
+        <!-- Overlay permission -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="الظهور فوق التطبيقات"
+                    android:textColor="@color/brown"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="لعرض شاشة القفل فوق التطبيق المقفول"
+                    android:textColor="@color/brown_mid"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/overlayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_btn_yellow"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="تفعيل"
+                android:textColor="@color/brown"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Usage access permission -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="الوصول إلى استخدام التطبيقات"
+                    android:textColor="@color/brown"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="لمعرفة متى يُفتح تطبيق مقفول"
+                    android:textColor="@color/brown_mid"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/usageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_btn_yellow"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="تفعيل"
+                android:textColor="@color/brown"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="24dp" />
+
+        <TextView
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_btn_brown"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cairo_extrabold"
+            android:gravity="center"
+            android:text="ابدأ القراءة"
+            android:textColor="@color/cream"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

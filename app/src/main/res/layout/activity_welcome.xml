@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="40dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="28dp">
+
+        <ImageView
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:background="@drawable/bg_icon_big"
+            android:importantForAccessibility="no"
+            android:padding="20dp"
+            android:src="@drawable/ic_book"
+            android:tint="@color/brown" />
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/cairo_bold"
+            android:text="الخطوة ١ من ٢"
+            android:textColor="@color/brown_mid"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cairo_extrabold"
+            android:gravity="center"
+            android:text="كم أصحاحًا تقرأ كل يوم؟"
+            android:textColor="@color/brown"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="تبقى تطبيقات التواصل مقفولة كل يوم إلى أن تقرأ هذا العدد."
+            android:textColor="@color/brown_mid"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/plusButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_btn_brown"
+                    android:clickable="true"
+                    android:contentDescription="زيادة العدد"
+                    android:focusable="true"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_plus"
+                    android:tint="@color/yellow_bright" />
+
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/countText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_extrabold"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/brown"
+                        android:textSize="72sp" />
+
+                    <TextView
+                        android:id="@+id/unitText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:textColor="@color/brown_mid"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/minusButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_btn_outline"
+                    android:clickable="true"
+                    android:contentDescription="تقليل العدد"
+                    android:focusable="true"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_minus"
+                    android:tint="@color/brown" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/preset1"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_preset"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:text="١"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/preset3"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_preset"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:text="٣"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/preset5"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_preset"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:text="٥"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/preset7"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_preset"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:text="٧"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noteText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_soft"
+            android:padding="12dp"
+            android:text="يمكنك تغيير العدد لاحقًا من الإعدادات، ويبدأ التغيير من اليوم التالي."
+            android:textColor="@color/brown"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="24dp" />
+
+        <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_btn_yellow"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cairo_extrabold"
+            android:gravity="center"
+            android:text="التالي"
+            android:textColor="@color/brown"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

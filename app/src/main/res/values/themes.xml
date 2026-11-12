@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DailyBible" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryDark">@color/cream</item>
+        <item name="colorAccent">@color/brown</item>
+        <item name="android:windowBackground">@color/cream</item>
+        <item name="android:statusBarColor">@color/cream</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/cream</item>
+        <item name="android:textColorPrimary">@color/brown</item>
+        <item name="android:fontFamily">@font/cairo_regular</item>
+        <item name="fontFamily">@font/cairo_regular</item>
+    </style>
+</resources>

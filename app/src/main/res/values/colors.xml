@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cream">#FFF6D6</color>
+    <color name="paper">#FFFDF5</color>
+    <color name="yellow">#F5B800</color>
+    <color name="yellow_bright">#FFD23F</color>
+    <color name="yellow_soft">#F3E6B8</color>
+    <color name="yellow_ring">#FFE28A</color>
+    <color name="brown">#3B2412</color>
+    <color name="brown_mid">#6B4423</color>
+    <color name="brown_deep">#2E1B0E</color>
+    <color name="brown_card">#3F2816</color>
+    <color name="brown_line">#5A3D22</color>
+    <color name="brown_track">#6B4B2A</color>
+    <color name="line">#E8D9A8</color>
+    <color name="sand">#E9D7A6</color>
+    <color name="disabled_bg">#E9DDB4</color>
+    <color name="disabled_text">#5C4320</color>
+    <color name="verse_num">#9A6A00</color>
+    <color name="switch_off">#D9C89A</color>
+</resources>

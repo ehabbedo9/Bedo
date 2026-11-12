@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
         LockService.start(this)
         render()
+        // Refresh once more so the status line reflects the service after it has started.
+        window.decorView.postDelayed({ if (!isFinishing && Prefs.isSetupDone(this)) render() }, 1500L)
     }
 
     private fun openReader() {
@@ -116,5 +118,13 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.permissionWarning).visibility =
             if (Permissions.allGranted(this)) View.GONE else View.VISIBLE
+
+        // Small status line to help find out why a lock did not appear.
+        val alive = System.currentTimeMillis() - LockService.lastTick < 5000L
+        var status = "خدمة القفل: " + (if (alive) "تعمل" else "متوقفة") +
+            "\nآخر تطبيق تم رصده: " + (LockService.lastOtherPackage ?: "لا شيء")
+        val error = LockService.lastError
+        if (error != null) status += "\nخطأ: " + error
+        findViewById<TextView>(R.id.debugStatus).text = status
     }
 }

@@ -38,6 +38,11 @@ class LockService : Service() {
         private const val INTERVAL_MS = 500L
         private const val IDLE_INTERVAL_MS = 2000L
 
+        // Diagnostics shown at the bottom of the home screen.
+        @Volatile var lastTick = 0L
+        @Volatile var lastOtherPackage: String? = null
+        @Volatile var lastError: String? = null
+
         fun start(context: Context) {
             try {
                 ContextCompat.startForegroundService(context, Intent(context, LockService::class.java))
@@ -58,10 +63,12 @@ class LockService : Service() {
     private val ticker = object : Runnable {
         override fun run() {
             var delay = INTERVAL_MS
+            lastTick = System.currentTimeMillis()
             try {
                 if (powerManager.isInteractive) check() else delay = IDLE_INTERVAL_MS
             } catch (e: Exception) {
                 // Keep the loop alive whatever happens in one pass.
+                lastError = e.toString()
             }
             handler.postDelayed(this, delay)
         }
@@ -110,6 +117,7 @@ class LockService : Service() {
                 startForeground(NOTIFICATION_ID, notification)
             }
         } catch (e: Exception) {
+            lastError = e.toString()
             stopSelf()
         }
     }
@@ -139,6 +147,7 @@ class LockService : Service() {
             // ACTIVITY_RESUMED has the same value (1) as the older MOVE_TO_FOREGROUND.
             if (event.eventType == UsageEvents.Event.ACTIVITY_RESUMED) {
                 foregroundPackage = event.packageName
+                if (event.packageName != packageName) lastOtherPackage = event.packageName
             }
         }
         lastQuery = now

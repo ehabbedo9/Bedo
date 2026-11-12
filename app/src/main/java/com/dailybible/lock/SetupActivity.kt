@@ -6,10 +6,10 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -30,9 +30,9 @@ class SetupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setup)
         settingsMode = intent.getBooleanExtra(EXTRA_SETTINGS, false)
 
-        bindSwitch(R.id.switchFacebook, "facebook")
-        bindSwitch(R.id.switchInstagram, "instagram")
-        bindSwitch(R.id.switchTwitter, "twitter")
+        bindRow(R.id.rowFacebook, R.id.checkFacebook, R.id.stateFacebook, "facebook")
+        bindRow(R.id.rowInstagram, R.id.checkInstagram, R.id.stateInstagram, "instagram")
+        bindRow(R.id.rowTwitter, R.id.checkTwitter, R.id.stateTwitter, "twitter")
 
         findViewById<View>(R.id.overlayButton).setOnClickListener { open(Permissions.overlayIntent(this)) }
         findViewById<View>(R.id.usageButton).setOnClickListener { open(Permissions.usageIntent()) }
@@ -77,19 +77,29 @@ class SetupActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindSwitch(viewId: Int, appId: String) {
-        val switch = findViewById<SwitchCompat>(viewId)
-        switch.isChecked = Prefs.isAppLocked(this, appId)
-        switch.setOnCheckedChangeListener { button, checked ->
-            val wasLocked = Prefs.isAppLocked(this, appId)
-            if (settingsMode && !checked && wasLocked && !Prefs.isComplete(this)) {
+    /** One app row: a filled check means the app will be locked. Tap to change. */
+    private fun bindRow(rowId: Int, checkId: Int, stateId: Int, appId: String) {
+        val check = findViewById<ImageView>(checkId)
+        val state = findViewById<TextView>(stateId)
+
+        fun render() {
+            val locked = Prefs.isAppLocked(this, appId)
+            check.setBackgroundResource(if (locked) R.drawable.bg_circle_brown else R.drawable.bg_circle_outline)
+            if (locked) check.setImageResource(R.drawable.ic_check) else check.setImageDrawable(null)
+            state.text = if (locked) "سيُقفل" else "غير مقفول"
+        }
+
+        findViewById<View>(rowId).setOnClickListener {
+            val locked = Prefs.isAppLocked(this, appId)
+            if (settingsMode && locked && !Prefs.isComplete(this)) {
                 // Not allowed to unlock an app before today's reading is done.
-                button.isChecked = true
                 Toast.makeText(this, "أكمل قراءة اليوم أولًا لإلغاء قفل التطبيق", Toast.LENGTH_LONG).show()
             } else {
-                Prefs.setAppLocked(this, appId, checked)
+                Prefs.setAppLocked(this, appId, !locked)
+                render()
             }
         }
+        render()
     }
 
     private fun renderPermission(viewId: Int, granted: Boolean) {
@@ -110,6 +120,10 @@ class SetupActivity : AppCompatActivity() {
     private fun onStartClicked() {
         if (settingsMode) {
             finish()
+            return
+        }
+        if (LockedApps.enabled(this).isEmpty()) {
+            Toast.makeText(this, "اختر تطبيقًا واحدًا على الأقل للقفل", Toast.LENGTH_LONG).show()
             return
         }
         if (!Permissions.allGranted(this)) {

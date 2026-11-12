@@ -248,5 +248,14 @@
             android:text="الإعدادات"
             android:textColor="@color/brown"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/debugStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="@color/brown_mid"
+            android:textSize="11sp" />
     </LinearLayout>
 </ScrollView>

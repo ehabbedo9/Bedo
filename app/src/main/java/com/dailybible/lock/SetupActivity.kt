@@ -69,22 +69,27 @@ class SetupActivity : AppCompatActivity() {
                 if (next == today) Ar.chapters(today) + " كل يوم"
                 else Ar.chapters(next) + " · يبدأ من الغد"
 
-            // While today's reading is not finished the list of locked apps cannot be changed,
-            // otherwise the lock could be switched off instead of reading.
-            val editable = Prefs.isComplete(this)
-            findViewById<View>(R.id.switchFacebook).isEnabled = editable
-            findViewById<View>(R.id.switchInstagram).isEnabled = editable
-            findViewById<View>(R.id.switchTwitter).isEnabled = editable
+            // While today's reading is not finished an app can be added to the lock but not
+            // removed from it, otherwise the lock could be switched off instead of reading.
             findViewById<TextView>(R.id.appsHint).text =
-                if (editable) "تُقفل هذه التطبيقات كل يوم إلى أن تكمل قراءتك."
-                else "يمكن تعديل التطبيقات بعد إكمال قراءة اليوم."
+                if (Prefs.isComplete(this)) "تُقفل هذه التطبيقات كل يوم إلى أن تكمل قراءتك."
+                else "يمكنك إضافة تطبيق للقفل الآن. إلغاء القفل متاح بعد إكمال قراءة اليوم."
         }
     }
 
     private fun bindSwitch(viewId: Int, appId: String) {
         val switch = findViewById<SwitchCompat>(viewId)
         switch.isChecked = Prefs.isAppLocked(this, appId)
-        switch.setOnCheckedChangeListener { _, checked -> Prefs.setAppLocked(this, appId, checked) }
+        switch.setOnCheckedChangeListener { button, checked ->
+            val wasLocked = Prefs.isAppLocked(this, appId)
+            if (settingsMode && !checked && wasLocked && !Prefs.isComplete(this)) {
+                // Not allowed to unlock an app before today's reading is done.
+                button.isChecked = true
+                Toast.makeText(this, "أكمل قراءة اليوم أولًا لإلغاء قفل التطبيق", Toast.LENGTH_LONG).show()
+            } else {
+                Prefs.setAppLocked(this, appId, checked)
+            }
+        }
     }
 
     private fun renderPermission(viewId: Int, granted: Boolean) {

@@ -11,8 +11,21 @@ android {
         applicationId = "com.dailybible.lock"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        // The build number comes from CI (-PbuildNumber=N) so every APK has its own version.
+        val buildNumber = (project.findProperty("buildNumber") as String?)?.toIntOrNull() ?: 1
+        versionCode = buildNumber
+        versionName = "1.0.$buildNumber"
+    }
+
+    // One fixed debug key kept in the repo, so every build is signed the same way and a
+    // new APK installs over the previous one instead of being rejected.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {

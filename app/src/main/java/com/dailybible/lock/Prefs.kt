@@ -111,7 +111,7 @@ object Prefs {
         return if (last == today() || last == yesterday()) p.getInt(K_STREAK, 0) else 0
     }
 
-    fun isAppLocked(c: Context, id: String): Boolean = sp(c).getBoolean(K_APP_PREFIX + id, true)
+    fun isAppLocked(c: Context, id: String): Boolean = sp(c).getBoolean(K_APP_PREFIX + id, false)
 
     fun setAppLocked(c: Context, id: String, locked: Boolean) {
         sp(c).edit().putBoolean(K_APP_PREFIX + id, locked).apply()

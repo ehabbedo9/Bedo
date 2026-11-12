@@ -191,20 +191,30 @@ class LockService : Service() {
         overlay = null
     }
 
+    // The activity is started while the overlay is still on screen: newer Android versions
+    // only let a background app open a screen when it has a visible window.
     private fun openReader() {
-        foregroundPackage = packageName
-        hideOverlay()
         val intent = Intent(this, ReaderActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            lastError = e.toString()
+        }
+        foregroundPackage = packageName
+        hideOverlay()
     }
 
     private fun goHome() {
-        foregroundPackage = null
-        hideOverlay()
         val intent = Intent(Intent.ACTION_MAIN)
         intent.addCategory(Intent.CATEGORY_HOME)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startActivity(intent)
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            lastError = e.toString()
+        }
+        foregroundPackage = null
+        hideOverlay()
     }
 }

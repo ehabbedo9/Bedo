@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<View>(R.id.continueButton).setOnClickListener { openReader() }
         findViewById<View>(R.id.settingsButton).setOnClickListener { openSettings() }
         findViewById<View>(R.id.permissionWarning).setOnClickListener { openSettings() }
+        findViewById<View>(R.id.lockCard).setOnClickListener { openSettings() }
     }
 
     override fun onResume() {
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         val lockIcon = findViewById<ImageView>(R.id.lockIcon)
         lockIcon.setImageResource(if (complete || apps.isEmpty()) R.drawable.ic_unlock else R.drawable.ic_lock)
         lockTitle.text = when {
-            apps.isEmpty() -> "لا توجد تطبيقات مختارة للقفل"
+            apps.isEmpty() -> "لم تختر تطبيقات للقفل. اضغط هنا للاختيار"
             complete -> "التطبيقات مفتوحة الآن"
             apps.size == 1 -> "تطبيق واحد مقفول الآن"
             apps.size == 2 -> "تطبيقان مقفولان الآن"
@@ -121,7 +122,12 @@ class MainActivity : AppCompatActivity() {
 
         // Small status line to help find out why a lock did not appear.
         val alive = System.currentTimeMillis() - LockService.lastTick < 5000L
-        var status = "خدمة القفل: " + (if (alive) "تعمل" else "متوقفة") +
+        val version = try {
+            packageManager.getPackageInfo(packageName, 0).versionName ?: "?"
+        } catch (e: Exception) {
+            "?"
+        }
+        var status = "الإصدار " + version + "\nخدمة القفل: " + (if (alive) "تعمل" else "متوقفة") +
             "\nآخر تطبيق تم رصده: " + (LockService.lastOtherPackage ?: "لا شيء")
         val error = LockService.lastError
         if (error != null) status += "\nخطأ: " + error

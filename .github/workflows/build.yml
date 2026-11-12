@@ -20,7 +20,8 @@ jobs:
       - name: Build debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug --no-daemon -PbuildNumber=${{ github.run_number }}
+          cp app/build/outputs/apk/debug/app-debug.apk DailyBible-${{ github.run_number }}.apk
       - uses: actions/upload-artifact@v4
         with:
           name: DailyBible-debug-apk
@@ -30,4 +31,6 @@ jobs:
         with:
           tag_name: build-${{ github.run_number }}
           name: Build ${{ github.run_number }}
-          files: app/build/outputs/apk/debug/app-debug.apk
+          files: |
+            app/build/outputs/apk/debug/app-debug.apk
+            DailyBible-${{ github.run_number }}.apk

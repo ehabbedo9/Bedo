@@ -72,7 +72,7 @@ class SetupActivity : AppCompatActivity() {
             // While today's reading is not finished an app can be added to the lock but not
             // removed from it, otherwise the lock could be switched off instead of reading.
             findViewById<TextView>(R.id.appsHint).text =
-                if (Prefs.isComplete(this)) "تُقفل هذه التطبيقات كل يوم إلى أن تكمل قراءتك."
+                if (Prefs.isComplete(this)) "اضغط على التطبيق لتحديده أو لإلغاء تحديده."
                 else "يمكنك إضافة تطبيق للقفل الآن. إلغاء القفل متاح بعد إكمال قراءة اليوم."
         }
     }
@@ -86,7 +86,7 @@ class SetupActivity : AppCompatActivity() {
             val locked = Prefs.isAppLocked(this, appId)
             check.setBackgroundResource(if (locked) R.drawable.bg_circle_brown else R.drawable.bg_circle_outline)
             if (locked) check.setImageResource(R.drawable.ic_check) else check.setImageDrawable(null)
-            state.text = if (locked) "سيُقفل" else "غير مقفول"
+            state.text = if (locked) "سيُقفل" else "اضغط للتحديد"
         }
 
         findViewById<View>(rowId).setOnClickListener {

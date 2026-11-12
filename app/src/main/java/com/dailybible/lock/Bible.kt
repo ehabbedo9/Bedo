@@ -47,6 +47,13 @@ object Bible {
         return Pair(0, 0)
     }
 
+    /** Converts (bookIndex, chapterIndex) to the global chapter index. */
+    fun globalIndex(book: Int, chapter: Int): Int {
+        var index = 0
+        for (i in 0 until book) index += CHAPTER_COUNTS[i]
+        return index + chapter
+    }
+
     /** Title such as "التكوين ٢". */
     fun title(globalIndex: Int): String {
         val (book, chapter) = locate(globalIndex)

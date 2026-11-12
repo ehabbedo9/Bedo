@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true"
+    android:layoutDirection="rtl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:id="@+id/stepText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_bold"
+            android:text="الخطوة ٣ من ٣"
+            android:textColor="@color/brown_mid"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_extrabold"
+            android:text="فعّل إذنين ليعمل القفل"
+            android:textColor="@color/brown"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="أندرويد لا يسمح لأي تطبيق بتفعيلهما وحده، فتشغّلهما بنفسك مرة واحدة فقط. اتبع الخطوات."
+            android:textColor="@color/brown_mid"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/chip1"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_preset"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:textColor="@color/brown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/chip2"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_preset"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:textColor="@color/brown"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- The step being done now -->
+        <LinearLayout
+            android:id="@+id/stepCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/permTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_extrabold"
+                android:textColor="@color/brown"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/permWhy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/brown_mid"
+                android:textSize="13sp" />
+
+            <!-- Moving picture of the switch to turn on. Follows the phone's own language direction. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_soft"
+                android:gravity="center_vertical"
+                android:layoutDirection="locale"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_yellow"
+                    android:importantForAccessibility="no"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_book"
+                    android:tint="@color/brown" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="@string/app_name"
+                    android:textColor="@color/brown"
+                    android:textSize="15sp" />
+
+                <FrameLayout
+                    android:id="@+id/demoTrack"
+                    android:layout_width="52dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_pill_off">
+
+                    <View
+                        android:id="@+id/demoThumb"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_circle_paper" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/permSteps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/brown"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Shown when both permissions are on -->
+        <LinearLayout
+            android:id="@+id/doneBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/bg_circle_brown"
+                android:importantForAccessibility="no"
+                android:padding="18dp"
+                android:src="@drawable/ic_check"
+                android:tint="@color/yellow_bright" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/cairo_extrabold"
+                android:text="تم تفعيل الإذنين"
+                android:textColor="@color/brown"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="القفل جاهز للعمل."
+                android:textColor="@color/brown_mid"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="24dp" />
+
+        <TextView
+            android:id="@+id/permButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_btn_yellow"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/cairo_extrabold"
+            android:gravity="center"
+            android:text="افتح الإعدادات"
+            android:textColor="@color/brown"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/permNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="بعد تشغيل المفتاح يعود التطبيق وحده. إن لم يعد، اضغط زر الرجوع."
+            android:textColor="@color/brown_mid"
+            android:textSize="13sp" />
+    </LinearLayout>
+</ScrollView>

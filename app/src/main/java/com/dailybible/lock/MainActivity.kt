@@ -17,7 +17,12 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.continueButton).setOnClickListener { openReader() }
         findViewById<View>(R.id.settingsButton).setOnClickListener { openSettings() }
-        findViewById<View>(R.id.permissionWarning).setOnClickListener { openSettings() }
+        findViewById<View>(R.id.permissionWarning).setOnClickListener {
+            startActivity(Intent(this, PermissionActivity::class.java))
+        }
+        findViewById<View>(R.id.changeStart).setOnClickListener {
+            startActivity(Intent(this, PickerActivity::class.java))
+        }
         findViewById<View>(R.id.lockCard).setOnClickListener { openSettings() }
     }
 
@@ -66,8 +71,9 @@ class MainActivity : AppCompatActivity() {
         // Today's chapters: the ones already read today, then the next ones in order.
         val container = findViewById<LinearLayout>(R.id.chaptersContainer)
         container.removeAllViews()
+        val readToday = Prefs.readToday(this)
         for (i in 0 until target) {
-            val index = pointer - done + i
+            val index = if (i < done) (readToday.getOrNull(i) ?: (pointer - done + i)) else pointer + (i - done)
             val item = layoutInflater.inflate(R.layout.item_chapter, container, false)
             val badge = item.findViewById<TextView>(R.id.itemBadge)
             val check = item.findViewById<ImageView>(R.id.itemCheck)

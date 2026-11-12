@@ -35,6 +35,10 @@ class WelcomeActivity : AppCompatActivity() {
         findViewById<View>(R.id.preset5).setOnClickListener { setCount(5) }
         findViewById<View>(R.id.preset7).setOnClickListener { setCount(7) }
 
+        findViewById<View>(R.id.startChange).setOnClickListener {
+            startActivity(Intent(this, PickerActivity::class.java))
+        }
+
         val next = findViewById<TextView>(R.id.nextButton)
         if (editMode) {
             findViewById<View>(R.id.stepText).visibility = View.GONE
@@ -51,6 +55,12 @@ class WelcomeActivity : AppCompatActivity() {
             }
         }
         render()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // The picker may have changed where reading starts.
+        findViewById<TextView>(R.id.startValue).text = Bible.title(Prefs.pointer(this))
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

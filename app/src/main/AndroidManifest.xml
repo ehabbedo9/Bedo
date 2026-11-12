@@ -40,6 +40,8 @@
         <activity android:name=".SetupActivity" android:exported="false" android:screenOrientation="portrait" />
         <activity android:name=".ReaderActivity" android:exported="false" android:screenOrientation="portrait" />
         <activity android:name=".DoneActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".PickerActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".PermissionActivity" android:exported="false" android:screenOrientation="portrait" />
 
         <service
             android:name=".LockService"

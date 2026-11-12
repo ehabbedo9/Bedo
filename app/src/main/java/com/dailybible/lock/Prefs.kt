@@ -18,6 +18,7 @@ object Prefs {
     private const val K_STREAK = "streak"
     private const val K_LAST_COMPLETE = "last_complete_day"
     private const val K_FONT = "font_step"
+    private const val K_READ_TODAY = "read_today"
     private const val K_APP_PREFIX = "lock_"
 
     const val DEFAULT_TARGET = 3
@@ -44,6 +45,7 @@ object Prefs {
         p.edit()
             .putString(K_DAY, today)
             .putInt(K_DONE_TODAY, 0)
+            .putString(K_READ_TODAY, "")
             .putInt(K_TARGET, p.getInt(K_NEXT_TARGET, p.getInt(K_TARGET, DEFAULT_TARGET)))
             .apply()
     }
@@ -85,6 +87,20 @@ object Prefs {
     /** Global index (0..1188) of the next chapter to read. */
     fun pointer(c: Context): Int = sp(c).getInt(K_POINTER, 0)
 
+    /** Sets where reading continues from (the user can pick any book and chapter). */
+    fun setPointer(c: Context, index: Int) {
+        val total = Bible.TOTAL_CHAPTERS
+        sp(c).edit().putInt(K_POINTER, ((index % total) + total) % total).apply()
+    }
+
+    /** Global indexes of the chapters read today, in reading order. */
+    fun readToday(c: Context): List<Int> {
+        rollover(c)
+        val saved = sp(c).getString(K_READ_TODAY, "") ?: ""
+        if (saved.isEmpty()) return emptyList()
+        return saved.split(',').mapNotNull { it.toIntOrNull() }
+    }
+
     /** Records the current chapter as read. Returns true if this completed today's reading. */
     @Synchronized
     fun markChapterRead(c: Context): Boolean {
@@ -92,8 +108,11 @@ object Prefs {
         val p = sp(c)
         val wasComplete = p.getInt(K_DONE_TODAY, 0) >= p.getInt(K_TARGET, DEFAULT_TARGET)
         val done = p.getInt(K_DONE_TODAY, 0) + 1
-        val pointer = (p.getInt(K_POINTER, 0) + 1) % Bible.TOTAL_CHAPTERS
-        val e = p.edit().putInt(K_DONE_TODAY, done).putInt(K_POINTER, pointer)
+        val current = p.getInt(K_POINTER, 0)
+        val pointer = (current + 1) % Bible.TOTAL_CHAPTERS
+        val readSoFar = p.getString(K_READ_TODAY, "") ?: ""
+        val readNow = if (readSoFar.isEmpty()) current.toString() else readSoFar + "," + current
+        val e = p.edit().putInt(K_DONE_TODAY, done).putInt(K_POINTER, pointer).putString(K_READ_TODAY, readNow)
         val nowComplete = done >= p.getInt(K_TARGET, DEFAULT_TARGET)
         val justCompleted = nowComplete && !wasComplete
         if (justCompleted) {

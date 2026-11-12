@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_bold"
-            android:text="الخطوة ٢ من ٢"
+            android:text="الخطوة ٢ من ٣"
             android:textColor="@color/brown_mid"
             android:textSize="13sp" />
 
@@ -175,7 +175,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Daily count row (settings mode only) -->
+        <!-- Shown only when opened as the settings screen -->
         <LinearLayout
             android:id="@+id/countRow"
             android:layout_width="match_parent"
@@ -207,13 +207,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/brown_mid"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/countChange"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/bg_btn_yellow"
                 android:clickable="true"
                 android:focusable="true"
@@ -226,24 +227,17 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/cairo_bold"
-            android:text="أذونات لازمة للقفل"
-            android:textColor="@color/brown"
-            android:textSize="16sp" />
-
-        <!-- Overlay permission -->
         <LinearLayout
+            android:id="@+id/permRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_card"
             android:gravity="center_vertical"
+            android:minHeight="64dp"
             android:orientation="horizontal"
-            android:padding="14dp">
+            android:padding="14dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -255,20 +249,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo_bold"
-                    android:text="الظهور فوق التطبيقات"
+                    android:text="أذونات القفل"
                     android:textColor="@color/brown"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/permStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="لعرض شاشة القفل فوق التطبيق المقفول"
                     android:textColor="@color/brown_mid"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/overlayButton"
+                android:id="@+id/permOpen"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginStart="8dp"
@@ -279,56 +273,7 @@
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="تفعيل"
-                android:textColor="@color/brown"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- Usage access permission -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_card"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="14dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cairo_bold"
-                    android:text="الوصول إلى استخدام التطبيقات"
-                    android:textColor="@color/brown"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="لمعرفة متى يُفتح تطبيق مقفول"
-                    android:textColor="@color/brown_mid"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/usageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_btn_yellow"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="تفعيل"
+                android:text="فتح"
                 android:textColor="@color/brown"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -348,7 +293,7 @@
             android:focusable="true"
             android:fontFamily="@font/cairo_extrabold"
             android:gravity="center"
-            android:text="ابدأ القراءة"
+            android:text="التالي"
             android:textColor="@color/cream"
             android:textSize="18sp" />
     </LinearLayout>

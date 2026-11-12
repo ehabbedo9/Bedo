@@ -12,13 +12,15 @@ the chosen number of Bible chapters has been read. Arabic, right-to-left, yellow
 
 ## How it works
 
-- First launch: choose the daily number of chapters (default 3), then choose the apps
-  and grant two permissions: "Display over other apps" and "Usage access".
+- First launch: choose the daily number of chapters (default 3) and where to start, then
+  the apps to lock, then a guided screen for the two permissions ("Display over other
+  apps" and "Usage access") that returns to the app by itself once each is turned on.
 - `LockService` runs as a foreground service, checks which app is in front twice a
   second, and covers a locked app with a full-screen overlay until the reading is done.
 - A chapter counts only after scrolling to its end and staying a minimum time
   (0.25 s per word, between 30 s and 5 min). Change these in `ReaderActivity`.
-- Reading runs in order from Genesis 1; the day resets at local midnight.
+- Reading runs in order from the book and chapter the user picks (Genesis 1 by default);
+  the day resets at local midnight.
 - Changing the daily number applies from the next day. The locked-app list can only
   be edited after today's reading is complete.
 

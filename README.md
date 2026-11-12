@@ -28,7 +28,7 @@ the chosen number of Bible chapters has been read. Arabic, right-to-left, yellow
   - `LockedApps.kt` - the list of locked apps and their package names
   - `Prefs.kt` - saved state (target, position, streak)
   - `LockService.kt` - detection and overlay
-- `app/src/main/assets/bible/` - Arabic Smith & Van Dyck Bible (public domain), one file per book
+- `app/src/main/assets/bible/` - Arabic Smith & Van Dyck Bible with full tashkeel (public domain, eBible.org arb-vd), one file per book
 - `app/src/main/res/` - layouts, colours, fonts (Cairo and Amiri, SIL Open Font License; see `licenses/`)
 
 ## Known limits

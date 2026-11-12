@@ -4,7 +4,8 @@ import android.content.Context
 import org.json.JSONArray
 
 /**
- * Arabic Smith & Van Dyck Bible (public domain), stored as one JSON file per book
+ * Arabic Smith & Van Dyck Bible (public domain, fully vowelled text from eBible.org
+ * "arb-vd" via github.com/midvash/bible-data), stored as one JSON file per book
  * in assets/bible/bNN.json. Each file is an array of chapters; each chapter is an
  * array of verse strings.
  */

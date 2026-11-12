@@ -107,7 +107,7 @@
         android:layout_marginTop="22dp"
         android:fontFamily="@font/amiri_regular"
         android:gravity="center"
-        android:text="«سراج لرجلي كلامك ونور لسبيلي.»"
+        android:text="«سِرَاجٌ لِرِجْلِي كَلَامُكَ وَنُورٌ لِسَبِيلِي.»"
         android:textColor="@color/cream"
         android:textSize="21sp" />
 
